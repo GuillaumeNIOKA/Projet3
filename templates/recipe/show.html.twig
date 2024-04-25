@@ -3,6 +3,6 @@
 {% block title "Recette : " ~slug %}
 
 {% block body %}
-    {{ slug }} {{ person.lastname ~ person.firstname }}
+    {{ slug | upper }} {{ person.lastname ~ person.firstname}}
 {% endblock %}
 

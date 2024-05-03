@@ -3,6 +3,14 @@
 {% block title "Toutes les recettes" %}
 
 {% block body %}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem blanditiis dolor ex ipsum odit saepe ut vel voluptas voluptate. Accusamus consequuntur dolorum et in officia officiis perspiciatis, soluta vitae.
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus autem blanditiis dolor ex ipsum odit saepe ut vel voluptas voluptate. Accusamus consequuntur dolorum et in officia officiis perspiciatis, soluta vitae.
+    </p>
+    <ul>
+        {{ dump(app.current_route) }}
+        <li>
+            <a href="{{ url('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}">Pâtes bolognaise</a>
+        </li>
+    </ul>
 {% endblock %}
-{% endblock %}
+

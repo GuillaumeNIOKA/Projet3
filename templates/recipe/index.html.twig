@@ -8,9 +8,11 @@
     </p>
     <ul>
         {{ dump(app.current_route) }}
-        <li>
-            <a href="{{ url('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}">Pâtes bolognaise</a>
-        </li>
+        {% for recipe in recipes %}
+            <li>
+                <a href="{{ url('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}"> {{recipe.getTitle()}} </a>
+            </li>
+        {% endfor %}
     </ul>
 {% endblock %}
 

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\RecipeRepository;
 
 class RecipeController extends AbstractController
 {
@@ -15,7 +16,7 @@ class RecipeController extends AbstractController
     {
         $recipes=$repository->findAll();
         dd($recipes);
-        return $this->render('recipe/index.html.twig');
+        return $this->render('recipe/index.html.twig', ['recipes'=>$recipes]);
     }
 
     #[Route('/recettes/{slug}-{id}', name: 'recipe.show', requirements: ['id'=>'\d+', 'slug'=>'[a-z0-9-]+'])]

@@ -10,7 +10,7 @@
         {{ dump(app.current_route) }}
         {% for recipe in recipes %}
             <li>
-                <a href="{{ url('recipe.show', {id: 32, slug: 'pate-bolognaise'}) }}"> {{recipe.getTitle()}} </a>
+                <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}"> {{recipe.title}} </a>
             </li>
         {% endfor %}
     </ul>

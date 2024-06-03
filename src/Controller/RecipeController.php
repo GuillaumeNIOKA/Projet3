@@ -12,12 +12,19 @@ use App\Repository\RecipeRepository;
 class RecipeController extends AbstractController
 {
     #[Route('/recettes/', name: 'recipe.index')]
-    public function index(Request $request, RecipeRepository $repository): Response
+    public function index(Request $request, RecipeRepository $repository, EntityManagerInterface $em): Response
     {
-        $recipes=$repository->findAll();
-        return $this->render('recipe/index.html.twig',[
-            'recipes'=>$recipes
-        ]);
+        $recipes=$repository->findWithDurationLowerThan(20);
+        $recipe = new Recipe();
+        $recipe->setTitle('Barbe à papa')
+        ->setSlug('barbe_papa')
+            ->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eleifend nisl dolor, ac rutrum nisl condimentum ut. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec venenatis venenatis nibh, eget posuere non.')
+            ->setDuration(2)
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setUpdatedAt(new \DateTimeImmutable());
+        $em->persist($recipe);
+        $em->flush();
+
     }
 
     #[Route('/recettes/{slug}-{id}', name: 'recipe.show', requirements: ['id'=>'\d+', 'slug'=>'[a-z0-9-]+'])]
